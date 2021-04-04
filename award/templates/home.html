@@ -1,12 +1,71 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awward</title>
-</head>
-<body>
-    <h1> It works for us</h1>
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static%}
+
+{% block content %}
+
+{{block.super}}
+
+
+<!-- Landing Page -->
+
+    <div class="  banner text-center">
+    <div class="header">
+        <div class="container image">
+            <h1>Welcome to my Gallery</h1>
+            <h3 id="category">Every picture tells a story</h3>
+     <br>
+    <small>Trending searches: Cars,Travel, Houses</small>
+     
+    <p>Photography brings a great memories of how interesting & tough life can be. </p>
+        </div>
+    </div>
+</div>
+
+
+        <hr>
+    <body id="bodyimage">
+
+    <div class="card-columns">
+    {% for image in images %}
+   
+    <div class="poraloid" data-toggle="modal" data-target="#{{image.id}}" >
+        <img src="{{image.image.url}}" alt="{{image.name}}" class="card-img" class="img-responsive" width="200px" height="150px">
+    </div>
     
-</body>
-</html>
+    <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                    <div class="modal-content modalcard">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageheader">{{image.name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        
+                        <div class="modal-body">
+                            <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid">
+                            <p class="imgdesc text-center">{{image.description}}</p>
+                            <span class="btn btn-sm btn-outline-success">{{image.category}}</span> <a
+                                href="" class="btn btn-sm btn-outline-info">{{image.location}}</a>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <input class="form-control input-lg" type="text" value="{{image.image.url}}" id="{{image.id}}.url">
+                            
+                            <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy Image</button>
+                            <button  type="button" class="btn btn-success btn-sm" data-dismiss="modal">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+    
+</body>    
+{% endblock %}
