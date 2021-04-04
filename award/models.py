@@ -6,3 +6,9 @@ class Post(models.Model):
     image = CloudinaryField('image')
     description =models.TextField(max_length=500)
     link =
+
+class Profile(models.Model):
+    profile_photo =
+    bio =
+    posts =
+    contact =
