@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from .models import Profile, Project, Rating, Review
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display =('user', 'name',)
