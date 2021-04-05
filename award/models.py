@@ -7,6 +7,24 @@ class Project(models.Model):
     description =models.TextField(max_length=500)
     link = models.CharField(max_length=300)
 
+    @classmethod
+    def get_projects(cls):
+        projects = cls.objects.all()
+        return projects
+
+    class Meta:
+        ordering = ["-pk"]
+    
+    @property
+
+    def save_projects(self):
+        self.save()
+    def delete_projects(self):
+        self.delete()
+
+    def __str__(self):
+        return self.projects_caption
+
 class Profile(models.Model):
     profile_photo = CloudinaryField('image')
     bio =models.TextField(max_length= 300)

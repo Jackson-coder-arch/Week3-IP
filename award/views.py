@@ -5,10 +5,21 @@ from .models import(
 )
 
 def home(request):
-    project = projects.objects.all()
-    context = {"project_list": project}
-    return render(request, 'home.html', context = context)
+    if request.method == 'GET':
+        project = projects.objects.all()
+
+    return render(request,'home.html',{'project':project})
 
 def projects(request):
-    projects = get_object_or_404(Projects,description= description, )
-    return render(request, 'projects.html',{'project':project})
+    if request.method == 'POST':
+
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            print('form is valid')
+            post = form.save(commit=False)
+            post.save()
+            return redirect('home')
+    else:
+        form = ProjectForm()
+
+    return render(request, 'projects.html',{'form':form})
