@@ -8,63 +8,40 @@
 
 
 <!-- Landing Page -->
+<body id="bodyimage">
 
     <div class="  banner text-center">
-    <div class="header">
-        <div class="container image">
-            <h1>Welcome to my Gallery</h1>
-            <h3 id="category">Every picture tells a story</h3>
-     <br>
-    <small>Trending searches: Cars,Travel, Houses</small>
-     
-    <p>Photography brings a great memories of how interesting & tough life can be. </p>
+        <div class="header">
+            <div class="container image">
+                <h1>Welcome to Project Site</h1>
+                <h3 id="category">You can always review the projects and rate them</h3>
+        
+            </div>
         </div>
     </div>
-</div>
-
 
         <hr>
-    <body id="bodyimage">
+        <div class="row">
+            {% for post in post %}
 
-    <div class="card-columns">
-    {% for image in images %}
-   
-    <div class="poraloid" data-toggle="modal" data-target="#{{image.id}}" >
-        <img src="{{image.image.url}}" alt="{{image.name}}" class="card-img" class="img-responsive" width="200px" height="150px">
-    </div>
-    
-    <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                    <div class="modal-content modalcard">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="imageheader">{{image.name}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        
-                        <div class="modal-body">
-                            <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid">
-                            <p class="imgdesc text-center">{{image.description}}</p>
-                            <span class="btn btn-sm btn-outline-success">{{image.category}}</span> <a
-                                href="" class="btn btn-sm btn-outline-info">{{image.location}}</a>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <input class="form-control input-lg" type="text" value="{{image.image.url}}" id="{{image.id}}.url">
-                            
-                            <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy Image</button>
-                            <button  type="button" class="btn btn-success btn-sm" data-dismiss="modal">Close
-                            </button>
-                        </div>
-                    </div>
+            <div class="colum-md-4 my-2 ml-5"> 
+                <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{post.name}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{post.image}} </h6>
+                  <p class="card-text">{{post.description}} </p>
+                  <a href="#" class="card-link">{{post.link}} </a>
                 </div>
-    </div>
+              </div>
+    
+            </div>
             {% endfor %}
+
         </div>
-    </div>
-</div>
+       
+    
+   
+   
 
     
 </body>    

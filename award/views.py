@@ -6,9 +6,10 @@ from .models import(
 
 def home(request):
     if request.method == 'GET':
-        project = projects.objects.all()
+        post = Project.get_info()
+        print(post)
 
-    return render(request,'home.html',{'project':project})
+    return render(request,'home.html',{'post':post})
 
 def projects(request):
     if request.method == 'POST':
@@ -23,3 +24,16 @@ def projects(request):
         form = ProjectForm()
 
     return render(request, 'projects.html',{'form':form})
+
+
+def profile(request):
+    if request.method == 'POST':
+        form = Profile(request.POST,request.FILES)
+        if form.is_valid():
+            form = profile.save(commit=False)
+            form.save()
+            return redirect('home')
+    else:
+        form = Profile()
+
+    return render(request,'profile.html',{'form':form})
