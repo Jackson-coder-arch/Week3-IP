@@ -26,10 +26,22 @@ class Project(models.Model):
         return self.projects_caption
 
 class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile',null = True)
     profile_photo = CloudinaryField('image')
     bio =models.TextField(max_length= 300)
     posts = models.CharField(max_length=100)
-    contact = models.EmailField
+    contact = models.EmailField()
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()
+
+
 
 class Rating(models.Model):
     pass
