@@ -5,10 +5,10 @@ from .models import(
 )
 
 def home(request):
-    projects = project.objects.all()
-    context = {"project_list": projects}
+    project = projects.objects.all()
+    context = {"project_list": project}
     return render(request, 'home.html', context = context)
 
 def projects(request):
-    project = get_object_or_404(Project,description= description, )
+    projects = get_object_or_404(Projects,description= description, )
     return render(request, 'projects.html',{'project':project})

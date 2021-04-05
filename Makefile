@@ -3,4 +3,4 @@ serve:
 migrations: 
 	python manage.py makemigrations
 migrate:
-	python mange.py migrate
+	python manage.py migrate
