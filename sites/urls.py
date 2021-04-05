@@ -19,4 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('award.urls')),
+    path('accounts/',include(django_registration.backend.one_step.urls)),
+    path('accounts/', include(django.contrib.auth.urls)),
 ]
