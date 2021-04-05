@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'lap#al#$-ir*innm0c0(lhoc4knt6)8ka15-@%9wzpy^9c!ihk'
+# SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'award'
+    'bootstrap4'
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+
+cloudinary.config(
+    cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME','dydhwkfmj'),
+    api_key = os.environ.get('CLOUDINARY_CLOUD_KEY','581448316934495'),
+    api_secret = os.environ.get('CLOUDINARY_API_SECRET','p8APZXIkxEI5RT6s99uHO3ypgZw'),
+)
