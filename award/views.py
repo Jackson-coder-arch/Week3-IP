@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import projectSerializer
 # from django.contrib.auth.decorators import login_required
 
 from .models import(
@@ -54,3 +58,35 @@ def registration(request):
         form = UserRegisterForm()
     return render(request, 'django_registration/registration_form',{'form':form} )
 
+def rate(request):
+    ratings = Rate.objects.all()
+    rate_params = {
+        'ratings': ratings
+    }
+
+class ProjectList(APIView):
+    def get(self, request):
+        project1 =Project.objects.all()
+        serializer = ProjectSerializer(project1,many=True)
+        return Response(serializer.data)
+
+
+    def post(self): 
+        pass
+
+
+    
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    else:
+        if request.method == 'POST':
+            username=request.POST.get('username')
+            password=request.POST.get('password')
+            user = authenticate(request, username=username ,password=password)
+            
+            if user is not None:   
+                login(request, user)
+               
+        context={}
+        return render(request,'registration/login.html',  context)
