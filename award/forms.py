@@ -12,7 +12,7 @@ class ProjectForm(forms.ModelForm):
         models = Project
         fields = ('name','image','description','link')
 
-class SignupForm(UserCreationForm):
+class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "password1", "password2"]

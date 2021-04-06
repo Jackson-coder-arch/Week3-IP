@@ -9,7 +9,6 @@
 
 <!-- Landing Page -->
 <body id="bodyimage">
-
     <div class="  banner text-center">
         <div class="header">
             <div class="container image">
@@ -17,8 +16,18 @@
                 <h3 id="category">You can always review the projects and rate them</h3>
         
             </div>
+            <div class="item has-tablet" id="bt-submit">
+                <a href="{% url 'upload'%}" class="button button-large">
+                    <span>SUBMIT YOUR SITE!</span>
+                </a>
+
+            </div>
         </div>
     </div>
+
+    <div class="container-fluid ml-5 pl-5">
+
+    
 
         <hr>
         <div class="row">
@@ -28,9 +37,9 @@
                 <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">{{post.name}}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{post.image}} </h6>
+                  <h6 class="card-subtitle mb-2 text-muted">{{post.image.url}} </h6>
                   <p class="card-text">{{post.description}} </p>
-                  <a href="#" class="card-link">{{post.link}} </a>
+                  <a href="{% url 'home'%} " class="card-link">{{post.link}} </a>
                 </div>
               </div>
     
@@ -43,6 +52,6 @@
    
    
 
-    
+    </div>
 </body>    
 {% endblock %}
