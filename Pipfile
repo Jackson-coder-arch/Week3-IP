@@ -11,6 +11,7 @@ psycopg2-binary = "*"
 django-registration = "*"
 djangorestframework = "*"
 gunicorn = "*"
+django-heroku = "*"
 
 [dev-packages]
 
