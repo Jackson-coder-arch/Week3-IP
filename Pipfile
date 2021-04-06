@@ -12,6 +12,7 @@ django-registration = "*"
 djangorestframework = "*"
 gunicorn = "*"
 django-heroku = "*"
+whitenoise = "*"
 
 [dev-packages]
 
