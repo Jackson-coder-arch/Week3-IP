@@ -9,11 +9,12 @@
         {% if form.errors %}
         {% for error in form.errors %}
         <small class="text-danger">{{error}}</small>
+        {% endfor %}
 
         {% endif %}
         <form action="{% url 'django_registration_register' %} "class='' method='POST'>
             {% csrf_token %}
-            {% boostrap_form form %}
+            {% bootstrap_form form %}
             <input class="btn btn-outline-success" type="submit" value ='Register'>
             <input type="hidden" value='{{next}}'>
         </form> 

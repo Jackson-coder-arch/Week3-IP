@@ -2,12 +2,14 @@ from django.shortcuts import render,redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import projectSerializer
+from .forms import ProjectForm, RegistrationForm, UpdateUserProfileForm
+# from .serializers import projectSerializer
 # from django.contrib.auth.decorators import login_required
 
 from .models import(
     Project,
     Profile,
+    Rating,
 )
 
 def home(request):
@@ -18,30 +20,30 @@ def home(request):
     return render(request,'home.html',{'post':post})
 
 def projects(request):
-    # if request.method == 'POST':
+    if request.method == 'POST':
 
-    #     form = ProjectForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         print('form is valid')
-    #         post = form.save(commit=False)
-    #         post.save()
-    #         return redirect('home')
-    # else:
-    #     form = ProjectForm()
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            print('form is valid')
+            post = form.save(commit=False)
+            post.save()
+            return redirect('home')
+    else:
 
-    return render(request, 'projects7.html',{'form':form})
+        form = ProjectForm()
+
+    return render(request, 'projects.html',{'form':form})
 
 
 def profile(request):
     if request.method == 'POST':
         form = Profile(request.POST,request.FILES)
         if form.is_valid():
-            form = profile.save(commit=False)
-            # form.user = user
+            form = UpdateUserProfileForm.save(commit=False)
             form.save()
             return redirect('home')
     else:
-        form = Profile()
+        form = UpdateUserProfileForm()
 
     return render(request,'profile.html',{'form':form})
 
@@ -55,8 +57,8 @@ def registration(request):
                 messages.success(request, f'Your account has been created! You are now able to log in')
                 return redirect('login')
     else:
-        form = UserRegisterForm()
-    return render(request, 'django_registration/registration_form',{'form':form} )
+        form = RegistrationForm()
+    return render(request, 'django_registration/registration_form.html',{'form':form} )
 
 def rate(request):
     ratings = Rate.objects.all()
@@ -75,8 +77,8 @@ class ProjectList(APIView):
         pass
 
 
-    
-def loginPage(request):
+
+def login(request):
     if request.user.is_authenticated:
         return redirect('index')
     else:
@@ -90,3 +92,26 @@ def loginPage(request):
                
         context={}
         return render(request,'registration/login.html',  context)
+
+def logout(request):
+    logout(request)
+    return redirect('login')  
+
+def search_project(request):
+    if 'name' in request.GET and request.GET['name']:
+        search_term = request.GET.get("name")
+        searched_posts = Posts.search_by_posts(search_term)
+        
+        message = f'{search_term}'
+    else:
+        message = "You haven't searched for any term"
+    
+    return render(request,'search.html')
+    
+    context={
+        "message": message,
+        "posts":searched_posts
+    }    
+        
+    return render(request,'search.html',context)
+ 

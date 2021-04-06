@@ -17,7 +17,7 @@
         
             </div>
             <div class="item has-tablet" id="bt-submit">
-                <a href="{% url 'upload'%}" class="button button-large">
+                <a href="{% url 'projects'%}" class="button button-large">
                     <span>SUBMIT YOUR SITE!</span>
                 </a>
 
@@ -37,9 +37,9 @@
                 <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">{{post.name}}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{post.image.url}} </h6>
+                  <img src="{{post.image.url}}" alt="image" class="card-image">
                   <p class="card-text">{{post.description}} </p>
-                  <a href="{% url 'home'%} " class="card-link">{{post.link}} </a>
+                  <a href="{{post.link}} " class="card-link">{{post.link}} </a>
                 </div>
               </div>
     
