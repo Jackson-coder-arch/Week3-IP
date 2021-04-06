@@ -6,12 +6,12 @@
 {% block content %}
     <div class="container">
         <h3 class="text-center">Register</h3>
-        {% if form.errors %}
+        <!-- {% if form.errors %}
         {% for error in form.errors %}
         <small class="text-danger">{{error}}</small>
         {% endfor %}
 
-        {% endif %}
+        {% endif %} -->
         <form action="{% url 'django_registration_register' %} "class='' method='POST'>
             {% csrf_token %}
             {% bootstrap_form form %}
