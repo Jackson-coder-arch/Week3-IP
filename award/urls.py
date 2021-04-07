@@ -6,17 +6,16 @@ from .views import(
     projects,
     profile,
     search_project,
-    login,
-    registration,
+    # registration,
+    # login,
     logout,
 )
-
 
 urlpatterns = [
     path('',home, name='home'),
     path('projects/',projects, name='projects'),
-    path('registration/',registration, name= 'registration'),
-    path('login/',login,name='login'),
+    # path('registration/',registration, name= 'registration'),
+    # path('login/',login,name='login'),
     path('logout/',logout, name='logout'),
     path('profile/',profile,name='profile'),
     path('search/',search_project,name ='search'),

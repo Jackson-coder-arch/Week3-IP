@@ -1,6 +1,7 @@
-{%extends "registration/base.html"%} {% load bootstrap3 %}
+{%extends "base.html"%}
+{% load bootstrap4 %}
 {% block content %}
-<div class="container">
+<div style="background-image: url('https://images.unsplash.com/photo-1582139329536-e7284fece509?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'); background-size: cover; background-repeat: no-repeat;" >
   <div class="row">
     <!-- Empty div -->
     <div class="col-md-4"></div>
@@ -15,14 +16,12 @@
         </div>
         <div class="panel-body">
 
-          <form  action="/accounts/register/" method="post">
+          <form method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
             <div class="form-group">
               <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
             </div>
-
-            <input type="hidden" name="next" value="{{next}}">
 
           </form>
 
@@ -39,27 +38,5 @@
 {% endblock %}
 
 
-<!-- {% extends 'base.html' %}
-{% load bootstrap4 %}
-{% load static %}
 
-
-{% block content %}
-    <div class="container">
-        <h3 class="text-center">Register</h3>
-        {% if form.errors %}
-        {% for error in form.errors %}
-        <small class="text-danger">{{error}}</small>
-        {% endfor %}
-
-        {% endif %}
-        <form action="{% url 'django_registration_register' %} "class='' method='POST'>
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            <input class="btn btn-outline-success" type="submit" value ='Register'>
-            <input type="hidden" value='{{next}}'>
-        </form> 
-
-    </div>
-{% endblock content %} -->
     
