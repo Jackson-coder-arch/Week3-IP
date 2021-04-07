@@ -36,3 +36,25 @@ class TestProfile(TestCase):
 
     def test_delete_user(self):
         self.user.delete()
+
+
+class RatingTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(id=1, username='jack')
+        self.project =Project.objects.create(id=1,name='test project',image='default.jpg',description='descr',
+        
+        self.rating = Rating.objects.create(id=1,usability=7,content=8,user=self.user,project=self.project)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.rating, Rating))
+
+    def test_save_rating(self):
+        self.rating.save_rating()
+        rating = Rating.objects.all()
+        self.assertTrue(len(rating) > 0)
+
+    def test_get_post_rating(self, id):
+        self.rating.save()
+        rating = Rating.get_ratings(post_id=id)
+        self.assertTrue(len(rating) == 1)
+ 
