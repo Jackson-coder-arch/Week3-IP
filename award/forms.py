@@ -15,7 +15,7 @@ class ProjectForm(forms.ModelForm):
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('username','email','password')
 
 class UpdateUserForm(forms.ModelForm):
     class Meta:

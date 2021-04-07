@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from .forms import ProjectForm, RegistrationForm, UpdateUserProfileForm
 # from .serializers import projectSerializer
 # from django.contrib.auth.decorators import login_required
@@ -12,6 +14,7 @@ from .models import(
     Rating,
 )
 
+@login_required(login_url='/accounts/login')
 def home(request):
     if request.method == 'GET':
         post = Project.get_info()
@@ -19,6 +22,7 @@ def home(request):
 
     return render(request,'home.html',{'post':post})
 
+@login_required(login_url='/accounts/login')
 def projects(request):
     if request.method == 'POST':
 
@@ -33,6 +37,7 @@ def projects(request):
         form = ProjectForm()
 
     return render(request, 'projects.html',{'form':form})
+
 
 
 def profile(request):
